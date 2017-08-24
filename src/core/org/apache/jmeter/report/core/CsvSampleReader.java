@@ -25,6 +25,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 import org.apache.jmeter.samplers.SampleSaveConfiguration;
 import org.apache.jmeter.save.CSVSaveService;
@@ -45,8 +46,10 @@ public class CsvSampleReader implements Closeable{
 
     private static final Logger LOG = LoggingManager.getLoggerForClass();
     private static final int BUF_SIZE = 10000;
-
-    private static final String CHARSET = "ISO8859-1";
+ // AlphaRuan modify for Report Chinese Display
+    private static final String CHARSET = StandardCharsets.UTF_8.displayName();
+    //
+//    private static final String CHARSET = "ISO8859-1";
 
     private static final char DEFAULT_SEPARATOR =
             JMeterUtils.getPropDefault("jmeter.save.saveservice.default_delimiter", ",").charAt(0); //$NON-NLS-1$ //$NON-NLS-2$
