@@ -20,6 +20,7 @@ package org.apache.jmeter.resources;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.Enumeration;
 import java.util.Properties;
 
@@ -61,7 +62,14 @@ public class TestPropertiesFiles extends JMeterTestCase {
 
     private static Properties loadProps(File file) throws Exception{
         Properties props = new Properties();
+        //AlphaRuan modify the input ,for Chinese Filter
+        //        try (FileInputStream inStream = new FileInputStream(file)){
+        
         try (FileInputStream inStream = new FileInputStream(file)){
+        	//最后load的是instream
+        	//下面这个无效
+//        	InputStreamReader isr = new InputStreamReader(inStream, "UTF-8");  
+
             props.load(inStream);            
         }
         return props;

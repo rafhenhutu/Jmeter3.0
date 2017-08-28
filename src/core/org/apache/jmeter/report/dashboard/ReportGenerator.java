@@ -20,6 +20,7 @@ package org.apache.jmeter.report.dashboard;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -140,6 +141,7 @@ public class ReportGenerator {
         this.resultCollector = resultCollector;
         this.testFile = file;
         final Properties merged = new Properties();
+        //alphaRuan, modify for Chinese
         File rgp = new File(JMeterUtils.getJMeterBinDir(), REPORTGENERATOR_PROPERTIES);
         if(LOG.isInfoEnabled()) {
             LOG.info("Reading report generator properties from:"+rgp.getAbsolutePath());
@@ -155,7 +157,9 @@ public class ReportGenerator {
     private static Properties loadProps(File file) {
         final Properties props = new Properties();
         try (FileInputStream inStream = new FileInputStream(file)) {
-            props.load(inStream);
+        	//alphaRuan试了这个，加入一语句，改下流。原来是   props.load(inStream);
+        	InputStreamReader isr = new InputStreamReader(inStream, "UTF-8");  
+            props.load(isr);
         } catch (IOException e) {
             LOG.error("Problem loading properties from file ", e);
             System.err.println("Problem loading properties " + e);

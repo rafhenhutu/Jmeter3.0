@@ -25,6 +25,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
 import org.apache.commons.lang3.Validate;
 import org.apache.jorphan.util.JOrphanUtils;
@@ -44,8 +45,9 @@ import org.apache.jorphan.util.JOrphanUtils;
 abstract public class AbstractSampleWriter extends SampleWriter {
 
     private static final int BUF_SIZE = 10000;
-
-    private static final String CHARSET = "ISO8859-1";
+//AlphaRuan modify for Chinese Reg
+    private static final String CHARSET = StandardCharsets.UTF_8.displayName();
+//    private static final String CHARSET = "ISO8859-1";
 
     /** output writer to write samples to */
     protected PrintWriter writer;
